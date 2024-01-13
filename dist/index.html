@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/f079e80ea1.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header class="">
+    <header>
     <div class="bg-cover h-screen" style="background-image: url('../images/background.jpeg');">
         <section class="pt-7 pl-10">    
         <div class="flex gap-1 h-6">
@@ -33,17 +33,46 @@
     <main class="px-24 pt-7 bg-[#ededed]">
         <div class="flex justify-between items-center">
             <div class="flex gap-16 font-manrope">
-            <ul class="bg-white p-4 rounded-xl flex gap-16 items-center">Ingrédients <i class="fa-solid fa-chevron-down"></i></ul>
-            <ul class="bg-white p-4 rounded-xl flex gap-16 items-center">Ingrédients <i class="fa-solid fa-chevron-down"></i></ul>
-            <ul class="bg-white p-4 rounded-xl flex gap-16 items-center">Ingrédients <i class="fa-solid fa-chevron-down"></i></ul>
+                <div class="gap-4 bg-white rounded-xl relative">
+                    <button class="select flex gap-16 p-4 items-center">Ingrédients <i class="fa-solid fa-chevron-down"></i></button>
+                        <div class="input-select rounded-xl hidden h-full p-4 items-center bg-white z-50 absolute">
+                            <div class="flex border-solid border-2 border-gray-300 justify-around h-9">
+                            <input type="text" class="font-manrope text-sm w-2/3 focus:outline-none">
+                            <button type="submit" class="flex items-center justify-center text-3xl">
+                                <i class="fa-solid fa-magnifying-glass text-sm" style="color: #7a7a7a;"></i>
+                            </button>
+                            </div>  
+                        </div>
+                 </div>
+                 <div class="gap-4 bg-white rounded-xl relative">
+                    <button class="select flex gap-16 p-4 items-center">Ingrédients <i class="fa-solid fa-chevron-down"></i></button>
+                        <div class="input-select rounded-xl hidden h-full p-4 items-center bg-white z-50 absolute">
+                            <div class="flex border-solid border-2 border-gray-300 justify-around h-9">
+                            <input type="text" class="font-manrope text-sm w-2/3 focus:outline-none">
+                            <button type="submit" class="flex items-center justify-center text-3xl">
+                                <i class="fa-solid fa-magnifying-glass text-sm" style="color: #7a7a7a;"></i>
+                            </button>
+                            </div>  
+                        </div>
+                 </div>
+                 <div class="gap-4 bg-white rounded-xl relative">
+                    <button class="select flex gap-16 p-4 items-center">Ingrédients <i class="fa-solid fa-chevron-down"></i></button>
+                        <div class="input-select rounded-xl hidden h-full p-4 items-center bg-white z-50 absolute">
+                            <div class="flex border-solid border-2 border-gray-300 justify-around h-9">
+                            <input type="text" class="font-manrope text-sm w-2/3 focus:outline-none">
+                            <button type="submit" class="flex items-center justify-center text-3xl">
+                                <i class="fa-solid fa-magnifying-glass text-sm" style="color: #7a7a7a;"></i>
+                            </button>
+                            </div>  
+                        </div>
+                 </div>
             </div>
             <span class=""><p class="font-anton text-xl">1500 recettes</p></span>
-            </div>
         </div>
         <section class="pt-14 grid grid-cols-3 gap-x-12 gap-y-16 pb-32">
             <div class="bg-white relative rounded-lg">
                 <img src="../images/background.jpeg" alt="" class="h-64 object-cover w-full rounded-t-lg">
-                <span class="bg-yellow-400 px-4 py-1 rounded-2xl absolute top-6 right-6"> 10min</span>
+                <span id="time" class="bg-yellow-400 px-4 py-1 rounded-2xl absolute top-6 right-6"> 10min</span>
                 <div class="px-6 pt-8 pb-16">
                     <h2 class="font-anton text-lg">Limonade de coco</h2>
                     <div class="flex flex-col pt-7 gap-4">
@@ -330,5 +359,6 @@
             </div>
         </section>
     </main>
+    <script src="../script/page.js" type="module"></script>
 </body>
 </html>
