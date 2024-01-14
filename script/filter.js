@@ -13,12 +13,10 @@ export const displaySelect = () => {
             absoluteElement0.classList.toggle("hidden");
 
             if (absoluteElement0.classList.contains("hidden")) {
-                console.log("hidden")
                     roundedElement0.classList.remove("rounded-t-xl");
                     roundedElement0.classList.add("rounded-xl");
                
             } else {
-                console.log("display")
                     roundedElement0.classList.remove("rounded-xl");
                     roundedElement0.classList.add("rounded-t-xl");
             }
