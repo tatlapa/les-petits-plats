@@ -2,12 +2,12 @@ export const displaySelect = () => {
     const buttonRelative0 = document.querySelector(".select-0");
     const buttonRelative1 = document.querySelector(".select-1");
     const buttonRelative2 = document.querySelector(".select-2");
-    const absoluteElement0 = document.querySelector(".absolute-0")
-    const absoluteElement1 = document.querySelector(".absolute-1")
-    const absoluteElement2 = document.querySelector(".absolute-2")
-    const roundedElement0 = document.querySelector(".select-rounded-0")
-    const roundedElement1 = document.querySelector(".select-rounded-1")
-    const roundedElement2 = document.querySelector(".select-rounded-2")
+    const absoluteElement0 = document.querySelector(".absolute-0");
+    const absoluteElement1 = document.querySelector(".absolute-1");
+    const absoluteElement2 = document.querySelector(".absolute-2");
+    const roundedElement0 = document.querySelector(".select-rounded-0");
+    const roundedElement1 = document.querySelector(".select-rounded-1");
+    const roundedElement2 = document.querySelector(".select-rounded-2");
 
         buttonRelative0.addEventListener("click", () => {
             absoluteElement0.classList.toggle("hidden");
