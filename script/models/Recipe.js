@@ -5,7 +5,7 @@ export default function createRecipe(data) {
         image: data.image, 
         name: data.name, 
         servings: data.servings, 
-        ingredients: data.ingredients, 
+        ingredients: data.ingredients,
         time: data.time, 
         description: data.description, 
         appliance: data.appliance, 
