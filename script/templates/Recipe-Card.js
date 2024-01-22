@@ -25,7 +25,6 @@ export default function createRecipeCard(recipe) {
                     recipeCard+=`</div>
                     </div>
                 </div>`;
-                    
             figure.innerHTML = recipeCard;
             return figure;
         }
