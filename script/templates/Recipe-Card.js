@@ -1,4 +1,4 @@
-export default function createRecipeCard(recipe) {
+export default function RecipeCard(recipe) {
 
     return {
         createRecipeCard() {

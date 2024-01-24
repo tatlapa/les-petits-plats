@@ -1,5 +1,4 @@
 import Api from "./api/api.js";
-import Recipe from "./models/Recipe.js";
 import FilterElements from "./templates/Filter.js";
 import RecipeCard from "./templates/Recipe-Card.js";
 import { displaySelect } from "./algorithm/filter-select.js";
@@ -14,7 +13,7 @@ const displayRecipes = async () => {
     const recipesData = await recipesApi.get();
     const recipes = recipesData;
 
-    recipes.map((recipe) => Recipe(recipe)).forEach((recipe) => {
+    recipes.forEach((recipe) => {
 
       const templateRecipeCard = RecipeCard(recipe);
       const recipeCard = templateRecipeCard.createRecipeCard();
@@ -27,20 +26,29 @@ const displayRecipes = async () => {
 const displayFilters = async () => {
   const recipesData = await recipesApi.get();
   const recipes = recipesData;
-
-  console.log(recipes)
+  let arrayIngredients = new Set();
 
   recipes.forEach((recipe) => {
-
-    console.log(recipe)
-
     const templateFilterElements = FilterElements(recipe);
     const filterElements = templateFilterElements.createFilterElements();
 
+    filterElements.forEach((filterElement) => {
+      const existingButton = [...arrayIngredients].find(
+        (button) => button.textContent === filterElement.textContent
+      );
 
-    filterSelect.appendChild(filterElements);
+      if (!existingButton) {
+        arrayIngredients.add(filterElement);
+      }
+    });
   });
-}
+
+  arrayIngredients = [...arrayIngredients];
+
+  arrayIngredients.forEach((uniqueIngredient) => {
+  filterSelect.appendChild(uniqueIngredient);
+  });
+};
 
 displayFilters();
 displayRecipes();
