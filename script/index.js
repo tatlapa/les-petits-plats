@@ -34,8 +34,8 @@ const displayFilters = async () => {
 
     filterElements.forEach((filterElement) => {
       const existingButton = [...arrayIngredients].find(
-        (button) => button.textContent === filterElement.textContent
-      );
+        (button) => button.textContent.toLowerCase() === filterElement.textContent.toLowerCase()
+        );
 
       if (!existingButton) {
         arrayIngredients.add(filterElement);
@@ -44,6 +44,7 @@ const displayFilters = async () => {
   });
 
   arrayIngredients = [...arrayIngredients];
+
 
   arrayIngredients.forEach((uniqueIngredient) => {
   filterSelect.appendChild(uniqueIngredient);
