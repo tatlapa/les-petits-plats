@@ -12,7 +12,6 @@ const filterIngredient = document.querySelector(".filter_ingredient");
 const filterAppliance = document.querySelector(".filter_appliance");
 const filterUstensil = document.querySelector(".filter_ustensils");
 
-
 const displayRecipes = async () => {
     const recipesData = await recipesApi.get();
     const recipes = recipesData;
@@ -74,3 +73,16 @@ const displayFilters = async () => {
 displayFilters();
 displayRecipes();
 displaySelect();
+
+//Variable for tag
+
+const tagSection = document.querySelector(".tag_section");
+const tagSelect = document.querySelectorAll(".tag_select");
+console.log(tagSelect);
+
+tagSelect.forEach((tag) => {
+  console.log(tag);
+  tag.addEventListener("click", () => {
+    tagSection.appendChild(tag);
+  });
+});
