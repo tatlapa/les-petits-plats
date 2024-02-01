@@ -77,6 +77,7 @@ displaySelect();
 //Variable for tag
 
 const tagSection = document.querySelector(".tag_section");
+console.log(tagSection);
 const tagSelect = document.querySelectorAll(".tag_select");
 console.log(tagSelect);
 
