@@ -2,6 +2,7 @@ import Api from "./api/api.js";
 import FilterElements from "./templates/Filter.js";
 import RecipeCard from "./templates/Recipe-Card.js";
 import { displaySelect } from "./algorithm/filter-select.js";
+import TagElements from "./templates/Tag.js";
 
 const recipesApi = new Api("../data/recipes.json");
 
@@ -27,6 +28,9 @@ const displayRecipes = async () => {
 };
 
 const displayFilters = async () => {
+
+  //section filters
+
   const recipesData = await recipesApi.get();
   const recipes = recipesData;
 
@@ -68,22 +72,31 @@ const displayFilters = async () => {
   arrayUstensils.forEach((uniqueUstensil) => {
     filterUstensil.appendChild(uniqueUstensil);
   });
+
+  //section tag
+
+  const tagSection = document.querySelector(".tag_section");
+  const tagSelect = document.querySelectorAll(".tag_select");
+
+  tagSelect.forEach((tag) => {
+
+    let filterText = tag.textContent;
+
+    const templateTagElements = TagElements(tag);
+    const tagElement = templateTagElements.createTagElements(filterText);
+
+    tag.addEventListener("click", () => {
+       tagSection.innerHTML += tagElement;
+    });
+
+  });
+
+
 };
 
 displayFilters();
 displayRecipes();
 displaySelect();
 
-//Variable for tag
 
-const tagSection = document.querySelector(".tag_section");
-console.log(tagSection);
-const tagSelect = document.querySelectorAll(".tag_select");
-console.log(tagSelect);
 
-tagSelect.forEach((tag) => {
-  console.log(tag);
-  tag.addEventListener("click", () => {
-    tagSection.appendChild(tag);
-  });
-});
