@@ -102,6 +102,34 @@ const displayFilters = async () => {
   
   });
 
+  // section input
+
+const inputIngredient = document.querySelector(".input-ingredient");
+const inputAppliance = document.querySelector(".input-appliance");
+const inputUstensil = document.querySelector(".input-ustensil");
+
+const ingredientTags = document.querySelectorAll(".ingredient");
+const applianceTags = document.querySelectorAll(".appliance");
+const ustensilTags = document.querySelectorAll(".ustensil");
+
+const filterTags = (input, tags) => {
+  input.addEventListener('input', () => {
+    const searchText = input.value.toLowerCase();
+
+    tags.forEach(tag => {
+      const tagText = tag.textContent.toLowerCase();
+      if (tagText.includes(searchText)) {
+        tag.style.display = "";
+      } else {
+        tag.style.display = "none";
+      }
+    });
+  });
+}
+
+filterTags(inputIngredient, ingredientTags);
+filterTags(inputAppliance, applianceTags);
+filterTags(inputUstensil, ustensilTags);
 };
 
 displayFilters();
