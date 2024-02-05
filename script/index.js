@@ -1,7 +1,7 @@
 import Api from "./api/api.js";
 import FilterElements from "./templates/Filter.js";
 import RecipeCard from "./templates/Recipe-Card.js";
-import { displaySelect } from "./algorithm/filter-select.js";
+import { displaySelect } from "./movement/filter-select.js";
 import TagElements from "./templates/Tag.js";
 
 const recipesApi = new Api("../data/recipes.json");
@@ -78,19 +78,29 @@ const displayFilters = async () => {
   const tagSection = document.querySelector(".tag_section");
   const tagSelect = document.querySelectorAll(".tag_select");
 
+  const removeTag = () => {
+    const tagElement = document.querySelectorAll(".tag");
+  
+    tagElement.forEach((tag) => {
+      tag.addEventListener("click", () => {
+        tag.remove();
+      });
+    });
+  }
+  
   tagSelect.forEach((tag) => {
-
+  
     let filterText = tag.textContent;
-
+  
     const templateTagElements = TagElements(tag);
     const tagElement = templateTagElements.createTagElements(filterText);
-
+  
     tag.addEventListener("click", () => {
        tagSection.innerHTML += tagElement;
+       removeTag();
     });
-
+  
   });
-
 
 };
 
