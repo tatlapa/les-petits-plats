@@ -3,7 +3,7 @@ import { FilterElements } from "./templates/Filter.js";
 import { RecipeCard } from "./templates/Recipe-Card.js";
 import { displaySelect } from "./movement/filter-select.js";
 import { TagElements } from "./templates/Tag.js";
-import { filterRecipes } from './algorithm/search.js';
+import { filterRecipes } from './algorithm/Filter-Recipes.js';
 
 
 const recipesApi = new Api("./data/recipes.json");
@@ -139,6 +139,8 @@ const displayFilters = async () => {
 searchInput.addEventListener('input', async () => {
   const searchText = searchInput.value;
 
+  recipesSection.innerHTML = ''; // Vider la section des recettes
+
   if (searchText.length >= 3) {
     const allRecipes = await recipesApi.get();
     const filteredRecipes = filterRecipes(allRecipes, searchText);
@@ -150,6 +152,7 @@ searchInput.addEventListener('input', async () => {
     displayRecipes(await recipesApi.get());
   }
 });
+
 
 displayFilters();
 displayRecipes(await recipesApi.get());
