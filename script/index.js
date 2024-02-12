@@ -1,20 +1,23 @@
 import Api from "./api/api.js";
-import FilterElements from "./templates/Filter.js";
-import RecipeCard from "./templates/Recipe-Card.js";
+import { FilterElements } from "./templates/Filter.js";
+import { RecipeCard } from "./templates/Recipe-Card.js";
 import { displaySelect } from "./movement/filter-select.js";
-import TagElements from "./templates/Tag.js";
+import { TagElements } from "./templates/Tag.js";
+import { filterRecipes } from './algorithm/search.js';
 
-const recipesApi = new Api("../data/recipes.json");
+
+const recipesApi = new Api("./data/recipes.json");
 
 const recipesSection = document.querySelector(".recipes_section");
 
-//Variables for filters
 const filterIngredient = document.querySelector(".filter_ingredient");
 const filterAppliance = document.querySelector(".filter_appliance");
 const filterUstensil = document.querySelector(".filter_ustensils");
 
-const displayRecipes = async () => {
-    const recipesData = await recipesApi.get();
+const searchInput = document.querySelector('#search'); // Ajout du sélecteur pour l'élément d'entrée de recherche
+
+
+const displayRecipes = async (recipesData) => {
     const recipes = recipesData;
 
     recipes.forEach((recipe) => {
@@ -104,37 +107,55 @@ const displayFilters = async () => {
 
   // section input
 
-const inputIngredient = document.querySelector(".input-ingredient");
-const inputAppliance = document.querySelector(".input-appliance");
-const inputUstensil = document.querySelector(".input-ustensil");
+  const inputIngredient = document.querySelector(".input-ingredient");
+  const inputAppliance = document.querySelector(".input-appliance");
+  const inputUstensil = document.querySelector(".input-ustensil");
 
-const ingredientTags = document.querySelectorAll(".ingredient");
-const applianceTags = document.querySelectorAll(".appliance");
-const ustensilTags = document.querySelectorAll(".ustensil");
+  const ingredientTags = document.querySelectorAll(".ingredient");
+  const applianceTags = document.querySelectorAll(".appliance");
+  const ustensilTags = document.querySelectorAll(".ustensil");
 
-const filterTags = (input, tags) => {
-  input.addEventListener('input', () => {
-    const searchText = input.value.toLowerCase();
+  const filterTags = (input, tags) => {
+    input.addEventListener('input', () => {
+      const searchText = input.value.toLowerCase();
 
-    tags.forEach(tag => {
-      const tagText = tag.textContent.toLowerCase();
-      if (tagText.includes(searchText)) {
-        tag.style.display = "";
-      } else {
-        tag.style.display = "none";
-      }
+      tags.forEach(tag => {
+        const tagText = tag.textContent.toLowerCase();
+        if (tagText.includes(searchText)) {
+          tag.style.display = "";
+        } else {
+          tag.style.display = "none";
+        }
+      });
     });
-  });
-}
+  }
 
-filterTags(inputIngredient, ingredientTags);
-filterTags(inputAppliance, applianceTags);
-filterTags(inputUstensil, ustensilTags);
+  filterTags(inputIngredient, ingredientTags);
+  filterTags(inputAppliance, applianceTags);
+  filterTags(inputUstensil, ustensilTags);
 };
 
+// Ajout du gestionnaire d'événements pour la barre de recherche
+searchInput.addEventListener('input', async () => {
+  const searchText = searchInput.value;
+
+  if (searchText.length >= 3) {
+    const allRecipes = await recipesApi.get();
+    const filteredRecipes = filterRecipes(allRecipes, searchText);
+
+    recipesSection.innerHTML = '';
+
+    displayRecipes(filteredRecipes);
+  } else {
+    displayRecipes(await recipesApi.get());
+  }
+});
+
 displayFilters();
-displayRecipes();
+displayRecipes(await recipesApi.get());
 displaySelect();
+
+
 
 
 

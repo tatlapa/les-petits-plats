@@ -1,4 +1,4 @@
-export default function FilterElements(recipe) {
+export const FilterElements = (recipe) => {
   return {
     createFilterElements() {
       const ingredientsFilter = recipe.ingredients.map((ingredient) => {

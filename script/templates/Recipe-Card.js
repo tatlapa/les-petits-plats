@@ -1,4 +1,4 @@
-export default function RecipeCard(recipe) {
+export const RecipeCard = (recipe) => {
 
     return {
         createRecipeCard() {

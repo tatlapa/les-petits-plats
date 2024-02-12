@@ -1,4 +1,4 @@
-export default function TagElements() {
+export const TagElements = () => {
     return {
         createTagElements(filterText) {
             const tagElement = `
