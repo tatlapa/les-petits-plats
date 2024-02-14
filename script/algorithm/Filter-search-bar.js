@@ -1,5 +1,3 @@
-// search.js
-
 export const filterRecipes = (recipes, searchText) => {
     // Convertir le texte de recherche en minuscules pour une recherche insensible à la casse
     const lowerCaseSearchText = searchText.toLowerCase();
@@ -11,6 +9,7 @@ export const filterRecipes = (recipes, searchText) => {
                           recipe.ingredients.map(i => i.ingredient).join(' ') + ' ' +
                           recipe.appliance + ' ' +
                           recipe.ustensils.join(' ')).toLowerCase();
+
   
       // Vérifier si le texte de la recette contient le texte de recherche
       return recipeText.includes(lowerCaseSearchText);

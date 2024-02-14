@@ -3,19 +3,17 @@ import { FilterElements } from "./templates/Filter.js";
 import { RecipeCard } from "./templates/Recipe-Card.js";
 import { displaySelect } from "./movement/filter-select.js";
 import { TagElements } from "./templates/Tag.js";
-import { filterRecipes } from './algorithm/Filter-Recipes.js';
-
+import { filterRecipes } from './algorithm/Filter-search-bar.js';
+import { filterRecipesByTag } from './algorithm/Filter-tag.js';
 
 const recipesApi = new Api("./data/recipes.json");
 
 const recipesSection = document.querySelector(".recipes_section");
-
 const filterIngredient = document.querySelector(".filter_ingredient");
 const filterAppliance = document.querySelector(".filter_appliance");
 const filterUstensil = document.querySelector(".filter_ustensils");
-
-const searchInput = document.querySelector('#search'); // Ajout du sélecteur pour l'élément d'entrée de recherche
-
+const searchInput = document.querySelector('#search');
+const tagSection = document.querySelector(".tag_section");
 
 const displayRecipes = async (recipesData) => {
     const recipes = recipesData;
@@ -77,8 +75,7 @@ const displayFilters = async () => {
   });
 
   //section tag
-
-  const tagSection = document.querySelector(".tag_section");
+  
   const tagSelect = document.querySelectorAll(".tag_select");
 
   const removeTag = () => {
@@ -133,13 +130,28 @@ const displayFilters = async () => {
   filterTags(inputIngredient, ingredientTags);
   filterTags(inputAppliance, applianceTags);
   filterTags(inputUstensil, ustensilTags);
+
+  // Affichage des recettes filtrées par tag
+
+  tagSelect.forEach(button => {
+    button.addEventListener('click', function(event) {
+      // Récupérez le texte du bouton de filtre cliqué
+
+      const filterText = event.target.textContent;
+
+      const filteredRecipesByTag = filterRecipesByTag(recipes, filterText);
+
+      // Mettez à jour l'affichage de vos recettes avec les recettes filtrées
+      displayRecipes(filteredRecipesByTag);
+    });
+  });
 };
 
-// Ajout du gestionnaire d'événements pour la barre de recherche
+// Gestionnaire d'événements pour la barre de recherche
 searchInput.addEventListener('input', async () => {
   const searchText = searchInput.value;
 
-  recipesSection.innerHTML = ''; // Vider la section des recettes
+  recipesSection.innerHTML = ''; 
 
   if (searchText.length >= 3) {
     const allRecipes = await recipesApi.get();
