@@ -141,28 +141,34 @@ const displayFilters = async () => {
 
       const filteredRecipesByTag = filterRecipesByTag(recipes, filterText);
 
-      // Mettez à jour l'affichage de vos recettes avec les recettes filtrées
+      // Affichage de vos recettes avec les recettes filtrées
       displayRecipes(filteredRecipesByTag);
     });
   });
 };
 
+let timeoutId;
+
 // Gestionnaire d'événements pour la barre de recherche
-searchInput.addEventListener('input', async () => {
-  const searchText = searchInput.value;
+searchInput.addEventListener('input', () => {
+  clearTimeout(timeoutId); // Annule le précédent setTimeout
 
-  recipesSection.innerHTML = ''; 
+  timeoutId = setTimeout(async () => {
+    const searchText = searchInput.value;
 
-  if (searchText.length >= 3) {
-    const allRecipes = await recipesApi.get();
-    const filteredRecipes = filterRecipes(allRecipes, searchText);
+    recipesSection.innerHTML = ''; 
 
-    recipesSection.innerHTML = '';
+    if (searchText.length >= 3) {
+      const allRecipes = await recipesApi.get();
+      const filteredRecipes = filterRecipes(allRecipes, searchText);
 
-    displayRecipes(filteredRecipes);
-  } else {
-    displayRecipes(await recipesApi.get());
-  }
+      recipesSection.innerHTML = '';
+
+      displayRecipes(filteredRecipes);
+    } else {
+      displayRecipes(await recipesApi.get());
+    }
+  }, 500); // Attend 500 millisecondes avant de faire la requête
 });
 
 
