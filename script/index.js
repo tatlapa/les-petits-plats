@@ -84,6 +84,10 @@ const displayFilters = async () => {
     tagElement.forEach((tag) => {
       tag.addEventListener("click", () => {
         tag.remove();
+
+        // Met à jour l'affichage des recettes
+      recipesSection.innerHTML = '';
+      displayRecipes(recipes);
       });
     });
   }
@@ -140,6 +144,8 @@ const displayFilters = async () => {
       const filterText = event.target.textContent;
 
       const filteredRecipesByTag = filterRecipesByTag(recipes, filterText);
+
+      recipesSection.innerHTML = '';
 
       // Affichage de vos recettes avec les recettes filtrées
       displayRecipes(filteredRecipesByTag);
