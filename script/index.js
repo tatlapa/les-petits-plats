@@ -30,7 +30,7 @@ const displayRecipes = async (recipesData) => {
 
 const displayFilters = async () => {
 
-  //section filters
+  //section filtres
 
   const recipesData = await recipesApi.get();
   const recipes = recipesData;
@@ -151,7 +151,9 @@ const displayFilters = async () => {
       displayRecipes(filteredRecipesByTag);
     });
   });
-};
+}; // fin de la fonction displayFilters
+
+
 
 let timeoutId;
 

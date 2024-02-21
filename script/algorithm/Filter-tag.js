@@ -11,12 +11,9 @@ export const filterRecipesByTag = (recipes, tag) => {
       // Vérifier si le texte de la recette contient le tag
       const matchesTag = recipeText.includes(lowerCaseTag);
 
-      console.log(`Checking recipe ${recipe.name}: ${matchesTag ? 'matches' : 'does not match'} tag ${tag}`);  
       // Retourner vrai si le tag correspond à une partie de la recette
       return matchesTag;
     });
-
-    console.log(`Filtered recipes: ${filteredRecipesByTag.map(r => r.name).join(', ')}`);
 
   
     return filteredRecipesByTag;
