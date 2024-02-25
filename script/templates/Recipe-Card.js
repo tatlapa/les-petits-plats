@@ -26,11 +26,7 @@ export const RecipeCard = (recipe) => {
                     </div>
                 </div>`;
             figure.innerHTML = recipeCard;
-            const recipes = document.querySelectorAll(".recipe");
-            let nbRecipes = document.querySelector('#nb_recipes');
-            let counterRecipes;
-            counterRecipes = recipes.length + 1;
-            nbRecipes.textContent = counterRecipes + " recettes";
+            
             return figure;
         }
     };

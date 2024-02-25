@@ -17,6 +17,8 @@ const tagSection = document.querySelector(".tag_section");
 
 const displayRecipes = async (recipesData) => {
     const recipes = recipesData;
+    let nbRecipes = document.querySelector('#nb_recipes');
+    let counterRecipes;
 
     recipes.forEach((recipe) => {
 
@@ -25,6 +27,8 @@ const displayRecipes = async (recipesData) => {
 
       recipesSection.appendChild(recipeCard);
 
+      counterRecipes = recipes.length;
+      nbRecipes.textContent = counterRecipes + " recettes";
     });
 };
 
