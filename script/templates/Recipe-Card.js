@@ -3,7 +3,7 @@ export const RecipeCard = (recipe) => {
     return {
         createRecipeCard() {
             const figure = document.createElement('figure');
-            figure.classList.add("bg-white", "relative", "rounded-lg");
+            figure.classList.add("bg-white", "relative", "rounded-lg", "recipe");
             let recipeCard = `<img src="../images/recipe/${recipe.image}" alt="" class="h-64 object-cover w-full rounded-t-lg">
             <span class="bg-yellow-400 px-4 py-1 rounded-2xl absolute top-6 right-6">${recipe.time}min</span>
             <div class="px-6 pt-8 pb-16">
@@ -26,6 +26,11 @@ export const RecipeCard = (recipe) => {
                     </div>
                 </div>`;
             figure.innerHTML = recipeCard;
+            const recipes = document.querySelectorAll(".recipe");
+            let nbRecipes = document.querySelector('#nb_recipes');
+            let counterRecipes;
+            counterRecipes = recipes.length + 1;
+            nbRecipes.textContent = counterRecipes + " recettes";
             return figure;
         }
     };
