@@ -112,17 +112,17 @@ const displayFilters = async () => {
   // Section tag
   
   // Affichage des recettes filtrées par tag
-  const tagSelect = document.querySelectorAll(".tag_select");
+  const filter = document.querySelectorAll(".filter");
+  let activeTags = [];
 
-  tagSelect.forEach(button => {
+  filter.forEach(button => {
     button.addEventListener('click', function(event) {
       // Récupérez le texte du bouton de filtre cliqué
 
       const filterText = event.target.textContent;
-      const filteredRecipesByTag = filterRecipesByTag(recipes, filterText);
-      console.log(filterText)
-
       console.log(filteredRecipesByTag)
+      activeTags.push(filterText);
+      const filteredRecipesByTag = filterRecipesByTag(recipes, activeTags);
 
       recipesSection.innerHTML = '';
 
@@ -132,27 +132,24 @@ const displayFilters = async () => {
   });
 
   const removeTag = () => {
-    const tagElements = document.querySelectorAll(".tag");
+    const tags = document.querySelectorAll(".tag");
     
-    tagElements.forEach((tag) => {
+    tags.forEach((tag) => {
       tag.addEventListener("click", function(event) {
-
-        const filterText = event.target.textContent;
-        const filteredRecipesByTags = filterRecipesByTag(recipes, filterText);
-
-        console.log(filterText)
-        console.log(filteredRecipesByTags)
-  
-        // Afficher les recettes filtrées
-        displayRecipes(filteredRecipesByTags);
         tag.remove();
 
+        const filterText = event.target.textContent;
+        activeTags.push(filterText);
+        const filteredRecipesByTag = filterRecipesByTag(recipes, activeTags);
+  
+        // Afficher les recettes filtrées
+        displayRecipes(filteredRecipesByTag);
       });
     });
   }
   
   
-  tagSelect.forEach((tag) => {
+  filter.forEach((tag) => {
   
     let filterText = tag.textContent;
   
@@ -163,8 +160,7 @@ const displayFilters = async () => {
        tagSection.innerHTML += tagElement;
        removeTag();
     });
-  });
-    //Fin de la section tag
+  }); //Fin de la section tag
 }; // Fin de la fonction displayFilters
 
 
