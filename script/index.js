@@ -78,38 +78,6 @@ const displayFilters = async () => {
     filterUstensil.appendChild(uniqueUstensil);
   });
 
-  //section tag
-  
-  const tagSelect = document.querySelectorAll(".tag_select");
-
-  const removeTag = () => {
-    const tagElement = document.querySelectorAll(".tag");
-  
-    tagElement.forEach((tag) => {
-      tag.addEventListener("click", () => {
-        tag.remove();
-
-        // Met à jour l'affichage des recettes
-      recipesSection.innerHTML = '';
-      displayRecipes(recipes);
-      });
-    });
-  }
-  
-  tagSelect.forEach((tag) => {
-  
-    let filterText = tag.textContent;
-  
-    const templateTagElements = TagElements(tag);
-    const tagElement = templateTagElements.createTagElements(filterText);
-  
-    tag.addEventListener("click", () => {
-       tagSection.innerHTML += tagElement;
-       removeTag();
-    });
-  
-  });
-
   // section input
 
   const inputIngredient = document.querySelector(".input-ingredient");
@@ -139,15 +107,22 @@ const displayFilters = async () => {
   filterTags(inputAppliance, applianceTags);
   filterTags(inputUstensil, ustensilTags);
 
+  //Fin de la section input
+
+  // Section tag
+  
   // Affichage des recettes filtrées par tag
+  const tagSelect = document.querySelectorAll(".tag_select");
 
   tagSelect.forEach(button => {
     button.addEventListener('click', function(event) {
       // Récupérez le texte du bouton de filtre cliqué
 
       const filterText = event.target.textContent;
-
       const filteredRecipesByTag = filterRecipesByTag(recipes, filterText);
+      console.log(filterText)
+
+      console.log(filteredRecipesByTag)
 
       recipesSection.innerHTML = '';
 
@@ -155,7 +130,42 @@ const displayFilters = async () => {
       displayRecipes(filteredRecipesByTag);
     });
   });
-}; // fin de la fonction displayFilters
+
+  const removeTag = () => {
+    const tagElements = document.querySelectorAll(".tag");
+    
+    tagElements.forEach((tag) => {
+      tag.addEventListener("click", function(event) {
+
+        const filterText = event.target.textContent;
+        const filteredRecipesByTags = filterRecipesByTag(recipes, filterText);
+
+        console.log(filterText)
+        console.log(filteredRecipesByTags)
+  
+        // Afficher les recettes filtrées
+        displayRecipes(filteredRecipesByTags);
+        tag.remove();
+
+      });
+    });
+  }
+  
+  
+  tagSelect.forEach((tag) => {
+  
+    let filterText = tag.textContent;
+  
+    const templateTagElements = TagElements(tag);
+    const tagElement = templateTagElements.createTagElements(filterText);
+  
+    tag.addEventListener("click", () => {
+       tagSection.innerHTML += tagElement;
+       removeTag();
+    });
+  });
+    //Fin de la section tag
+}; // Fin de la fonction displayFilters
 
 
 
