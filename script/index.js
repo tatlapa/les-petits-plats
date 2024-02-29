@@ -16,21 +16,22 @@ const searchInput = document.querySelector('#search');
 const tagSection = document.querySelector(".tag_section");
 
 const displayRecipes = async (recipesData) => {
-    const recipes = recipesData;
-    let nbRecipes = document.querySelector('#nb_recipes');
-    let counterRecipes;
+  const recipes = recipesData;
+  let nbRecipes = document.querySelector('#nb_recipes');
 
-    recipes.forEach((recipe) => {
+  recipesSection.innerHTML = ''; // Assurez-vous que la section des recettes est vide avant d'ajouter de nouvelles recettes
 
-      const templateRecipeCard = RecipeCard(recipe);
-      const recipeCard = templateRecipeCard.createRecipeCard();
+  recipes.forEach((recipe) => {
+    const templateRecipeCard = RecipeCard(recipe);
+    const recipeCard = templateRecipeCard.createRecipeCard();
+    recipesSection.appendChild(recipeCard);
+  });
 
-      recipesSection.appendChild(recipeCard);
-
-      counterRecipes = recipes.length;
-      nbRecipes.textContent = counterRecipes + " recettes";
-    });
+  // Mettre à jour le compteur de recettes en dehors de la boucle forEach
+  nbRecipes.textContent = recipes.length + " recettes";
+  console.log(recipes.length);
 };
+
 
 const displayFilters = async () => {
 
@@ -117,17 +118,17 @@ const displayFilters = async () => {
 
   filter.forEach(button => {
     button.addEventListener('click', function(event) {
-      // Récupérez le texte du bouton de filtre cliqué
-
       const filterText = event.target.textContent;
-      console.log(filteredRecipesByTag)
       activeTags.push(filterText);
       const filteredRecipesByTag = filterRecipesByTag(recipes, activeTags);
-
+  
       recipesSection.innerHTML = '';
-
-      // Affichage de vos recettes avec les recettes filtrées
-      displayRecipes(filteredRecipesByTag);
+      
+      console.log(filteredRecipesByTag.length);
+      // Si filteredRecipesByTag est vide, ne pas appeler displayRecipes
+      if (filteredRecipesByTag.length >= 0) {
+        displayRecipes(filteredRecipesByTag);
+      }
     });
   });
 
@@ -136,18 +137,25 @@ const displayFilters = async () => {
     
     tags.forEach((tag) => {
       tag.addEventListener("click", function(event) {
-        tag.remove();
+        const filterText = tag.textContent.trim();
+          
+        // Filtrer activeTags en gardant seulement les éléments dont le texte est différent de filterText
+        activeTags = activeTags.filter(activeTag => activeTag.trim() !== filterText);        
 
-        const filterText = event.target.textContent;
-        activeTags.push(filterText);
+        // Supprimer l'élément de la page
+        tag.remove();
+    
         const filteredRecipesByTag = filterRecipesByTag(recipes, activeTags);
-  
+    
         // Afficher les recettes filtrées
+        recipesSection.innerHTML = '';
         displayRecipes(filteredRecipesByTag);
       });
     });
   }
   
+  
+   
   
   filter.forEach((tag) => {
   
