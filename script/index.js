@@ -15,6 +15,9 @@ const filterUstensil = document.querySelector(".filter_ustensils");
 const searchInput = document.querySelector('#search');
 const tagSection = document.querySelector(".tag_section");
 
+let activeTags = [];
+
+
 const displayRecipes = async (recipesData) => {
   const recipes = recipesData;
   let nbRecipes = document.querySelector('#nb_recipes');
@@ -29,7 +32,6 @@ const displayRecipes = async (recipesData) => {
 
   // Mettre à jour le compteur de recettes en dehors de la boucle forEach
   nbRecipes.textContent = recipes.length + " recettes";
-  console.log(recipes.length);
 };
 
 
@@ -114,7 +116,6 @@ const displayFilters = async () => {
   
   // Affichage des recettes filtrées par tag
   const filter = document.querySelectorAll(".filter");
-  let activeTags = [];
 
   filter.forEach(button => {
     button.addEventListener('click', function(event) {
@@ -124,7 +125,6 @@ const displayFilters = async () => {
   
       recipesSection.innerHTML = '';
       
-      console.log(filteredRecipesByTag.length);
       // Si filteredRecipesByTag est vide, ne pas appeler displayRecipes
       if (filteredRecipesByTag.length >= 0) {
         displayRecipes(filteredRecipesByTag);
@@ -171,32 +171,42 @@ const displayFilters = async () => {
   }); //Fin de la section tag
 }; // Fin de la fonction displayFilters
 
-
-
-let timeoutId;
+let lastSearchText = '';
+const searchButton = document.querySelector('#search_button');
 
 // Gestionnaire d'événements pour la barre de recherche
-searchInput.addEventListener('input', () => {
-  clearTimeout(timeoutId); // Annule le précédent setTimeout
-
-  timeoutId = setTimeout(async () => {
-    const searchText = searchInput.value;
-
-    recipesSection.innerHTML = ''; 
-
-    if (searchText.length >= 3) {
-      const allRecipes = await recipesApi.get();
-      const filteredRecipes = filterRecipes(allRecipes, searchText);
-
-      recipesSection.innerHTML = '';
-
-      displayRecipes(filteredRecipes);
-    } else {
-      displayRecipes(await recipesApi.get());
-    }
-  }, 500); // Attend 500 millisecondes avant de faire la requête
+searchInput.addEventListener('input', function(event) {
+  if (searchInput.value.length === 0 || event.key === 'Enter') {
+    handleSearch();
+  }
 });
 
+// Gestionnaire d'événements pour le bouton de recherche
+searchButton.addEventListener('click', handleSearch);
+
+async function handleSearch() {
+  const searchText = searchInput.value;
+
+  recipesSection.innerHTML = ''; 
+
+  if (searchText.length >= 3) {
+    activeTags.push(searchText);
+    lastSearchText = searchText;
+  } else if (lastSearchText) {
+    const index = activeTags.indexOf(lastSearchText);
+    if (index > -1) {
+      activeTags.splice(index, 1);
+    }
+    lastSearchText = '';
+  }
+
+  const allRecipes = await recipesApi.get();
+  const filteredRecipes = filterRecipesByTag(allRecipes, activeTags);
+
+  recipesSection.innerHTML = '';
+
+  displayRecipes(filteredRecipes);
+}
 
 displayFilters();
 displayRecipes(await recipesApi.get());
