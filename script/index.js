@@ -175,8 +175,14 @@ let lastSearchText = '';
 const searchButton = document.querySelector('#search_button');
 
 // Gestionnaire d'événements pour la barre de recherche
-searchInput.addEventListener('input', function(event) {
-  if (searchInput.value.length === 0 || event.key === 'Enter') {
+searchInput.addEventListener('input', function() {
+  if (searchInput.value.length === 0) {
+    handleSearch();
+  }
+});
+
+searchInput.addEventListener('keyup', function(event) {
+  if (event.key === 'Enter') {
     handleSearch();
   }
 });
