@@ -32,6 +32,10 @@ const displayRecipes = async (recipesData) => {
 
   // Mettre à jour le compteur de recettes en dehors de la boucle forEach
   nbRecipes.textContent = recipes.length + " recettes";
+
+  if (recipes.length === 0) {
+    recipesSection.innerHTML = `<p class="no-recipe">Aucune recette ne contient "${searchInput.value}" vous pouvez chercher «tarte aux pommes », « poisson », etc...</p>`
+  }
 };
 
 
@@ -176,7 +180,7 @@ const searchButton = document.querySelector('#search_button');
 
 // Gestionnaire d'événements pour la barre de recherche
 searchInput.addEventListener('input', function() {
-  if (searchInput.value.length === 0) {
+  if (searchInput.value.length < 3) {
     handleSearch();
   }
 });
@@ -213,6 +217,7 @@ async function handleSearch() {
 
   displayRecipes(filteredRecipes);
 }
+
 
 displayFilters();
 displayRecipes(await recipesApi.get());
