@@ -3,8 +3,7 @@ import { FilterElements } from "./templates/Filter.js";
 import { RecipeCard } from "./templates/Recipe-Card.js";
 import { displaySelect } from "./movement/filter-select.js";
 import { TagElements } from "./templates/Tag.js";
-import { filterRecipes } from './algorithm/Filter-search-bar.js';
-import { filterRecipesByTag } from './algorithm/Filter-tag.js';
+import { filterRecipesByTag } from './algorithm/Filter-Recipes.js';
 
 const recipesApi = new Api("./data/recipes.json");
 
