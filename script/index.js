@@ -179,7 +179,7 @@ const searchButton = document.querySelector('#search_button');
 
 // Gestionnaire d'événements pour la barre de recherche
 searchInput.addEventListener('input', function() {
-  if (searchInput.value.length < 3) {
+  if (searchInput.value.length === 0) {
     handleSearch();
   }
 });
