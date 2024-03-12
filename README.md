@@ -23,6 +23,6 @@ Ouvrez un terminal dans votre editeur de texte et rentrez 'npm run dev'
   - algorithme méthode de tableau filter
   - algorithme en boucle for
 
-  Vous pouvez retrouver ces deux branches sur le dépot github et plus précisément dans le dossier /:
+  Vous pouvez retrouver ces deux branches sur le dépot github :
   Filter : https://github.com/tatlapa/les-petits-plats/tree/main/script/algorithm/Filter-Recipes.js
   For : https://github.com/tatlapa/les-petits-plats/tree/second/script/algorithm/Filter-Recipes.js
