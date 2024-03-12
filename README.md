@@ -10,7 +10,7 @@ Ouvrez un terminal dans votre editeur de texte et rentrez 'npm run dev'
 
 - Barre de recherche principale :
   Rentrez au moins 3 caractères décrivant un ingrédient, un ustensile ou un appareil puis appuyez sur la loupe ou sur la touche "Entrée" afin de lancer la recherche.
-  Si vous souhaitez revenir en arrière, effacez votre recherche, en dessous de 3 caractères, la recherche liée à la barre de recherche sera effacée.
+  Si vous souhaitez revenir en arrière, effacez votre recherche et arrivé a 0 caractères, la recherche liée à la barre de recherche sera effacée.
 - Filtre par tag :
   Sélectionnez vos filtres via les onglets defilants "appareils","ustensiles" et "appareils", des tags apparaitronts et decriront le(s) filtre(s) selectionné(s).
   Vous avez la possibilité de supprimer les tags en cliquant dessus.
