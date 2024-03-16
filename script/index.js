@@ -21,7 +21,7 @@ const displayRecipes = async (recipesData) => {
   const recipes = recipesData;
   let nbRecipes = document.querySelector('#nb_recipes');
 
-  recipesSection.innerHTML = ''; // Assurez-vous que la section des recettes est vide avant d'ajouter de nouvelles recettes
+  recipesSection.innerHTML = '';
 
   recipes.forEach((recipe) => {
     const templateRecipeCard = RecipeCard(recipe);
@@ -29,7 +29,7 @@ const displayRecipes = async (recipesData) => {
     recipesSection.appendChild(recipeCard);
   });
 
-  // Mettre à jour le compteur de recettes en dehors de la boucle forEach
+  // Mettre à jour le compteur de recettes
   nbRecipes.textContent = recipes.length + " recettes";
 
   if (recipes.length === 0) {
@@ -83,6 +83,7 @@ const displayFilters = async () => {
   arrayUstensils.forEach((uniqueUstensil) => {
     filterUstensil.appendChild(uniqueUstensil);
   });
+  //Fin de la section filtres
 
   // section input
 
@@ -112,7 +113,6 @@ const displayFilters = async () => {
   filterTags(inputIngredient, ingredientTags);
   filterTags(inputAppliance, applianceTags);
   filterTags(inputUstensil, ustensilTags);
-
   //Fin de la section input
 
   // Section tag
