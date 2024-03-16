@@ -15,6 +15,7 @@ export const filterRecipesByTag = (recipes, activeTags) => {
                           ingredientsText +
                           recipe.appliance + ' ' +
                           recipe.ustensils.join(' ')).toLowerCase();
+
   
       // Vérifier si chaque tag individuel est inclus dans recipeText
       let matchesAllTags = true;
@@ -30,6 +31,5 @@ export const filterRecipesByTag = (recipes, activeTags) => {
         filteredRecipesByTag.push(recipe);
       }
     }
-  
     return filteredRecipesByTag;
   }
