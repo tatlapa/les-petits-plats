@@ -17,7 +17,7 @@ const tagSection = document.querySelector(".tag_section");
 let activeTags = [];
 
 
-const displayRecipes = async (recipesData) => {
+const displayRecipes = recipesData => {
   const recipes = recipesData;
 
   let nbRecipes = document.querySelector('#nb_recipes');
@@ -158,8 +158,6 @@ const displayFilters = async () => {
   }
   
   
-   
-  
   filter.forEach((tag) => {
   
     let filterText = tag.textContent;
@@ -174,26 +172,8 @@ const displayFilters = async () => {
   }); //Fin de la section tag
 }; // Fin de la fonction displayFilters
 
-let lastSearchText = '';
-const searchButton = document.querySelector('#search_button');
 
-// Gestionnaire d'événements pour la barre de recherche
-searchInput.addEventListener('input', function() {
-  if (searchInput.value.length === 0) {
-    handleSearch();
-  }
-});
-
-searchInput.addEventListener('keyup', function(event) {
-  if (event.key === 'Enter') {
-    handleSearch();
-  }
-});
-
-// Gestionnaire d'événements pour le bouton de recherche
-searchButton.addEventListener('click', handleSearch);
-
-async function handleSearch() {
+const handleSearch = async () => {
   const searchText = searchInput.value;
 
   recipesSection.innerHTML = ''; 
@@ -216,6 +196,25 @@ async function handleSearch() {
 
   displayRecipes(filteredRecipes);
 }
+
+let lastSearchText = '';
+const searchButton = document.querySelector('#search_button');
+
+// Gestionnaire d'événements pour la barre de recherche
+searchInput.addEventListener('input', function() {
+  if (searchInput.value.length === 0) {
+    handleSearch();
+  }
+});
+
+searchInput.addEventListener('keyup', function(event) {
+  if (event.key === 'Enter') {
+    handleSearch();
+  }
+});
+
+// Gestionnaire d'événements pour le bouton de recherche
+searchButton.addEventListener('click', handleSearch);
 
 
 displayFilters();
