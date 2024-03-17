@@ -4,7 +4,7 @@ export const RecipeCard = (recipe) => {
         createRecipeCard() {
             const figure = document.createElement('figure');
             figure.classList.add("bg-white", "relative", "rounded-lg", "recipe");
-            let recipeCard = `<img src="../images/recipe/${recipe.image}" alt="" class="h-64 object-cover w-full rounded-t-lg">
+            let recipeCard = `<img src="./images/recipe/${recipe.image}" alt="" class="h-64 object-cover w-full rounded-t-lg">
             <span class="bg-yellow-400 px-4 py-1 rounded-2xl absolute top-6 right-6">${recipe.time}min</span>
             <div class="px-6 pt-8 pb-16">
                 <h2 class="font-anton text-lg">${recipe.name}</h2>
