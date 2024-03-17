@@ -9,7 +9,6 @@ export const filterRecipesByTag = (recipes, activeTags) => {
                             recipe.ustensils.join(' ')).toLowerCase();
         // Vérifier si chaque tag individuel est inclus dans recipeText
         const matchesAllTags = lowerCaseTags.every(tag => recipeText.includes(tag));
-        console.log(matchesAllTags);
 
         // Retourner vrai si la recette contient tous les tags actifs   
         return matchesAllTags;
