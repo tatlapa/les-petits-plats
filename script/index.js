@@ -139,7 +139,7 @@ const displayFilters = async () => {
     const tags = document.querySelectorAll(".tag");
     
     tags.forEach((tag) => {
-      tag.addEventListener("click", function(event) {
+      tag.addEventListener("click", () =>{
         const filterText = tag.textContent.trim();
           
         // Filtrer activeTags en gardant seulement les éléments dont le texte est différent de filterText
