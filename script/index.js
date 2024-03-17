@@ -45,9 +45,9 @@ const displayFilters = async () => {
   const recipesData = await recipesApi.get();
   const recipes = recipesData;
 
-  let arrayIngredients = new Set();
-  let arrayAppliances = new Set();
-  let arrayUstensils = new Set();
+  let arrayIngredients = [];
+  let arrayAppliances = [];
+  let arrayUstensils = [];
 
   recipes.forEach((recipe) => {
     const templateFilterElements = FilterElements(recipe);
@@ -57,20 +57,22 @@ const displayFilters = async () => {
       const textContentLower = filterElement.textContent.toLowerCase();
     
       if (filterElement.classList.contains('ingredient')) {
-        if (!Array.from(arrayIngredients).some(ingredient => ingredient.textContent.toLowerCase() === textContentLower)) {
-          arrayIngredients.add(filterElement);
+        if (!arrayIngredients.some(ingredient => ingredient.textContent.toLowerCase() === textContentLower)) {
+          arrayIngredients.push(filterElement);
         }
       } else if (filterElement.classList.contains('appliance')) {
-        if (!Array.from(arrayAppliances).some(appliance => appliance.textContent.toLowerCase() === textContentLower)) {
-          arrayAppliances.add(filterElement);
+        if (!arrayAppliances.some(appliance => appliance.textContent.toLowerCase() === textContentLower)) {
+          arrayAppliances.push(filterElement);
         }
       } else if (filterElement.classList.contains('ustensil')) {
-        if (!Array.from(arrayUstensils).some(ustensil => ustensil.textContent.toLowerCase() === textContentLower)) {
-          arrayUstensils.add(filterElement);
+        if (!arrayUstensils.some(ustensil => ustensil.textContent.toLowerCase() === textContentLower)) {
+          arrayUstensils.push(filterElement);
         }
       }
     });
   });
+  
+  console.log(arrayIngredients);
 
   arrayIngredients.forEach((uniqueIngredient) => {
     filterIngredient.appendChild(uniqueIngredient);
