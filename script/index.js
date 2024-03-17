@@ -19,6 +19,7 @@ let activeTags = [];
 
 const displayRecipes = async (recipesData) => {
   const recipes = recipesData;
+
   let nbRecipes = document.querySelector('#nb_recipes');
 
   recipesSection.innerHTML = '';

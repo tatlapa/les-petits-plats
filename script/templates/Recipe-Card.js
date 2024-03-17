@@ -16,13 +16,12 @@ export const RecipeCard = (recipe) => {
                     <p class="text-gray-400 uppercase">ingrédients</p>
                     <div class="grid grid-cols-2 gap-y-5">`;
                     recipe.ingredients.forEach(ingredient => {
-                        recipeCard+= `<span>
+                        recipeCard += `<span>
                         <p class="text-sm">${ingredient.ingredient}</p>
                         <p class="text-sm text-gray-400">${ingredient.quantity ?? ""} ${ingredient.unit ?? ""}</p>
-                    </span>`;
-                        
+                    </span>`;                        
                     });
-                    recipeCard+=`</div>
+                    `</div>
                     </div>
                 </div>`;
             figure.innerHTML = recipeCard;
