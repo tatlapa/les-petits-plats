@@ -72,8 +72,6 @@ const displayFilters = async () => {
     });
   });
   
-  console.log(arrayIngredients);
-
   arrayIngredients.forEach((uniqueIngredient) => {
     filterIngredient.appendChild(uniqueIngredient);
   });
