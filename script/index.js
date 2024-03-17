@@ -201,7 +201,7 @@ let lastSearchText = '';
 const searchButton = document.querySelector('#search_button');
 
 // Gestionnaire d'événements pour la barre de recherche
-searchInput.addEventListener('input', function() {
+searchInput.addEventListener('input', () => {
   if (searchInput.value.length === 0) {
     handleSearch();
   }
