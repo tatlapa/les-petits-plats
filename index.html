@@ -12,13 +12,13 @@
 </head>
 <body>
     <header>
-    <div class="bg-cover h-screen" style="background-image: url('./images/background.jpeg');">
-        <section class="pt-7 pl-10">    
-        <div class="flex gap-1 h-6">
-        <img src="./images/icons/les_petits_plats.svg" alt="">
-        <img src="./images/icons/dot.svg" alt="">    
+    <section class="bg-cover h-screen" style="background-image: url('./images/background.jpeg');">
+        <div class="pt-7 pl-10">    
+            <div class="flex gap-1 h-6">
+                <img src="./images/icons/les_petits_plats.svg" alt="">
+                <img src="./images/icons/dot.svg" alt="">    
+            </div>
         </div>
-        </section>
         <div class="flex h-full gap-6 flex-col px-60 gap- font-anton justify-center text-center">
             <p class="uppercase text-5xl text-yellow-400 px-28 leading-normal">cherchez parmi plus de 50 recettes du quotidien, simples et délicieuses</p>
             <div class="bg-white h-20 rounded-xl flex items-center">
@@ -28,7 +28,7 @@
                 </button>
             </div>
         </div>         
-    </div>
+    </section>
     </header>
     <main class="px-24 pt-7 bg-[#ededed]">
         <div class="flex justify-between items-center">
@@ -89,14 +89,14 @@
                     </div>
                 </div>
             </div>
-            <span><p class="font-anton text-xl" id="nb_recipes"></p></span>
+            <p><span class="font-anton text-xl" id="nb_recipes"></span></p>
         </div>
 
-        <section class="tag_section flex gap-2 font-manrope mt-5">
-        </section>
+        <div class="tag_section flex gap-2 font-manrope mt-5">
+        </div>
 
-        <section class="recipes_section pt-14 grid grid-cols-3 gap-x-12 gap-y-16 pb-32">      
-        </section>
+        <div class="recipes_section pt-14 grid grid-cols-3 gap-x-12 gap-y-16 pb-32">      
+        </div>
 
     </main>
     <script src="./script/index.js" type="module"></script>
