@@ -12,23 +12,23 @@
 </head>
 <body>
     <header>
-    <section class="bg-cover h-screen" style="background-image: url('./images/background.jpeg');">
-        <div class="pt-7 pl-10">    
-            <div class="flex gap-1 h-6">
-                <img src="./images/icons/les_petits_plats.svg" alt="">
-                <img src="./images/icons/dot.svg" alt="">    
+        <section class="bg-cover h-screen" style="background-image: url('./images/background.jpeg');">
+            <div class="pt-7 pl-10">    
+                <div class="flex gap-1 h-6">
+                    <img src="./images/icons/les_petits_plats.svg" alt="">
+                    <img src="./images/icons/dot.svg" alt="">    
+                </div>
             </div>
-        </div>
-        <div class="flex h-full gap-6 flex-col px-60 gap- font-anton justify-center text-center">
-            <p class="uppercase text-5xl text-yellow-400 px-28 leading-normal">cherchez parmi plus de 50 recettes du quotidien, simples et délicieuses</p>
-            <div class="bg-white h-20 rounded-xl flex items-center">
-                <input type="text" id="search" name="q" class="font-manrope text-base pl-9 h-3/4 w-full focus:outline-none" placeholder="Rechercher une recette, un ingrédient, ...">
-                <button type="submit" id="search_button" class="flex items-center justify-center rounded-lg text-white bg-black hover:text-black hover:bg-yellow-400 w-14 h-14 text-3xl mr-2.5">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </div>
-        </div>         
-    </section>
+            <div class="flex h-full gap-6 flex-col px-60 gap- font-anton justify-center text-center">
+                <p class="uppercase text-5xl text-yellow-400 px-28 leading-normal">cherchez parmi plus de 50 recettes du quotidien, simples et délicieuses</p>
+                <div class="bg-white h-20 rounded-xl flex items-center">
+                    <input type="text" id="search" name="q" class="font-manrope text-base pl-9 h-3/4 w-full focus:outline-none" placeholder="Rechercher une recette, un ingrédient, ...">
+                    <button type="submit" id="search_button" class="flex items-center justify-center rounded-lg text-white bg-black hover:text-black hover:bg-yellow-400 w-14 h-14 text-3xl mr-2.5">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>         
+        </section>
     </header>
     <main class="px-24 pt-7 bg-[#ededed]">
         <div class="flex justify-between items-center">
@@ -83,13 +83,12 @@
                                     </button>
                                 </div>
                             </div>
-                                <div class="filter_ustensils max-h-52 pb-1 overflow-y-auto bg-white grid grid-cols-1 gap-2 rounded-b-xl text-sm">
-                                </div>
+                            <div class="filter_ustensils max-h-52 pb-1 overflow-y-auto bg-white grid grid-cols-1 gap-2 rounded-b-xl text-sm"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <p><span class="font-anton text-xl" id="nb_recipes"></span></p>
+            <p class="font-anton text-xl" id="nb_recipes"></p>
         </div>
 
         <div class="tag_section flex gap-2 font-manrope mt-5">
